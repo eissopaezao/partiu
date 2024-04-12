@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -13,6 +13,9 @@
             align-items: center;
             height: 100vh;
             font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #191919;
         }
 
         a {
@@ -22,8 +25,8 @@
         .box {
             font-size: 30px;
             color: #F7DF1E;
-            height: 100vh;
-            width: 100vw;
+            height: 90vh; /* Reduzi a altura para acomodar melhor a imagem */
+            width: 90vw; /* Reduzi a largura para acomodar melhor a imagem */
             border-radius: 10px;
             background: #191919;
             display: flex;
@@ -31,6 +34,11 @@
             align-items: center;
             justify-content: center;
             font-weight: bolder;
+            margin: 0;
+            padding: 0;
+            max-width: 800px; /* Limita a largura máxima do conteúdo */
+            max-height: 600px; /* Limita a altura máxima do conteúdo */
+            overflow: hidden; /* Oculta qualquer conteúdo que exceda os limites */
         }
 
         .buttons-container {
@@ -38,7 +46,8 @@
             justify-content: space-around;
             align-items: center;
             height: 50px;
-            width: 250px;
+            width: 100%;
+            margin-top: 20px; /* Adiciona um espaçamento entre o texto e os botões */
         }
 
         button {
@@ -51,27 +60,51 @@
             border: 2px solid black;
             cursor: pointer;
         }
+
+        #imageContainer.hidden {
+            display: none;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
     </style>
     <title>Pedido Irrecusável</title>
 </head>
 <body>
+
+    <audio id="audio" src="https://www.myinstants.com/media/sounds/we-live-we-love-we-lie.mp3" preload="auto"></audio>
     <div class="box">
-        <p>C*zinho hoje?</p>
+        <p>Partiu igreja domingo? Lá nos prados</p>
         <div class="buttons-container">
-            <button><a href="https://www.youtube.com/watch?v=a8c5wmeOL9o&ab_channel=Dylancliff111">Sim</a></button>
+            <button id="si">Sim</button>
             <button id="no">Não</button>
+        </div>
+        <div id="imageContainer" class="hidden">
+            <img src="https://progmatico.com.br/media/indo-ali.png" alt="Imagem">
         </div>
     </div>
 </body>
 <script>
-    let button = document.getElementById('no');
+    let buttonNo = document.getElementById('no');
     let height = window.innerHeight - 100;
     let width = window.innerWidth - 100;
 
-    button.addEventListener('mouseover', function () {
-        button.style.position = "absolute"
-        button.style.top = Math.random() * height + "px";
-        button.style.left = Math.random() * width + "px";
+    buttonNo.addEventListener('mouseover', function () {
+        buttonNo.style.position = "absolute"
+        buttonNo.style.top = Math.random() * height + "px";
+        buttonNo.style.left = Math.random() * width + "px";
     })
+
+    // Adicione o script para o botão "Sim" aqui
+    let simButton = document.getElementById('si');
+    simButton.addEventListener('click', function () {
+        // Aqui você pode adicionar o código para reproduzir o código1
+        let audio = document.getElementById('audio');
+        audio.play();
+        document.getElementById('imageContainer').classList.remove('hidden');
+    });
 </script>
 </html>
